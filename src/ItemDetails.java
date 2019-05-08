@@ -1,9 +1,10 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 
 import java.util.ArrayList;
 
 public class ItemDetails {
-
+    private static final WebDriver driver = Selenium.Start();
     private String homePage;
 
     //Default Fields:
@@ -25,19 +26,26 @@ public class ItemDetails {
     String productOverview;
     ArrayList<String> productDescription;
 
-    public void HomeDepot() {
-        this.homePage = "https://www.homedepot.com";
-        this.category1 = Main.driver.findElement(By.xpath("//a[@class='breadcrumb__link'][2]")).toString();
-        this.category2 = Main.driver.findElement(By.xpath("//a[@class='breadcrumb__link'][3]")).toString();
-        this.category3 = Main.driver.findElement(By.xpath("//a[@class='breadcrumb__link'][4]")).toString();
-        this.modelId = Main.driver.findElement(By.xpath("//h2[@class='product_details modelNo']")).toString();
-        this.internetId = Main.driver.findElement(By.xpath("//span[@itemprop='productID']")).toString();
-        this.storeSku = Main.driver.findElement(By.xpath("//h2[@class='product_details'][2]")).toString();
+    public static void Website(ItemDetails product, String url) {
+        if(url.contains("www.homedepot.com")) {
+            driver.get(url);
+            product.HomeDepot();
+        }
+    }
 
-        this.brandName = Main.driver.findElement(By.xpath("//span[@class='bttn__content'][3]")).toString();
-        this.itemName = Main.driver.findElement(By.xpath("//h1[@class='product-title__title']")).toString();
-        this.itemCost = Float.parseFloat(Main.driver.findElement(By.xpath("//*[@id='ajaxPrice']")).getText());
-        this.color = Main.driver.findElement(By.xpath("//span[@class='attribute__name']")).toString();
+    private void HomeDepot() {
+        this.homePage = "https://www.homedepot.com";
+        this.category1 = driver.findElement(By.xpath("//a[@class='breadcrumb__link'][2]")).toString();
+        this.category2 = driver.findElement(By.xpath("//a[@class='breadcrumb__link'][3]")).toString();
+        this.category3 = driver.findElement(By.xpath("//a[@class='breadcrumb__link'][4]")).toString();
+        this.modelId = driver.findElement(By.xpath("//h2[@class='product_details modelNo']")).toString();
+        this.internetId = driver.findElement(By.xpath("//span[@itemprop='productID']")).toString();
+        this.storeSku = driver.findElement(By.xpath("//h2[@class='product_details'][2]")).toString();
+
+        this.brandName = driver.findElement(By.xpath("//span[@class='bttn__content'][3]")).toString();
+        this.itemName = driver.findElement(By.xpath("//h1[@class='product-title__title']")).toString();
+        this.itemCost = Float.parseFloat(driver.findElement(By.xpath("//*[@id='ajaxPrice']")).getText());
+        this.color = driver.findElement(By.xpath("//span[@class='attribute__name']")).toString();
         this.stock = 0; //TODO: 2 Step process
     }
 }

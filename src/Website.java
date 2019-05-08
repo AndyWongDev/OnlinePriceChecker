@@ -1,8 +1,8 @@
 import org.openqa.selenium.WebDriver;
 
 public class Website {
-	
-	static WebDriver driver = Main.driver;
+
+	public static final WebDriver driver = Selenium.Start();
 	
 	public static class HomeDepot {
 		
