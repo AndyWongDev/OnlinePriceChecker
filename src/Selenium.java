@@ -9,7 +9,7 @@ public class Selenium {
 		System.setProperty("webdriver.gecko.driver", "\\My Drive\\Coding\\Java\\selenium-java\\geckodriver.exe");
 					
 		WebDriver driver=new FirefoxDriver();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		return driver;
 	}
 }
